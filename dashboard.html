@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VEx - Dashboard</title>
 
-    <!-- GLOBAL STYLE -->
+    <!-- GLOBAL + PAGE STYLES -->
     <link rel="stylesheet" href="styles.css">
-
-    <!-- PAGE STYLE -->
     <link rel="stylesheet" href="dashboard.css">
 
     <!-- ICONS + FONTS -->
@@ -19,87 +17,141 @@
 
 <body>
 
-    <!-- NAVBAR (Identique aux autres pages) -->
-     <!-- NAVBAR -->
-    <header class="navbar">
-        <div class="logo">
-            <i class="fas fa-shield-alt"></i> VEx
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="analyze.html">Analyze</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="history.html">History</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="login.html" class="btn-login">Login</a>
+</header>
+
+<main class="dashboard">
+
+    <h1 class="page-title">Analysis Dashboard</h1>
+    <p class="page-subtitle">Real-time monitoring and threat intelligence</p>
+
+    <!-- TOP CARDS -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-wave-square"></i></div>
+            <h3>1,247</h3>
+            <p>Total Scans</p>
         </div>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="analyze.html">Analyze</a>
-            <a href="dashboard.html" class="active">Dashboard</a>
-            <a href="history.html">History</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+        <div class="stat-card">
+            <div class="stat-icon safe"><i class="fas fa-file-alt"></i></div>
+            <h3>848</h3>
+            <p>Safe Files</p>
+        </div>
 
+        <div class="stat-card">
+            <div class="stat-icon warning"><i class="fas fa-exclamation-triangle"></i></div>
+            <h3>274</h3>
+            <p>Suspicious</p>
+        </div>
 
-        <a href="login.html" class="btn-login">Login</a>
-    </header>
+        <div class="stat-card">
+            <div class="stat-icon danger"><i class="fas fa-skull-crossbones"></i></div>
+            <h3>125</h3>
+            <p>Malicious</p>
+        </div>
 
-    <!-- MAIN CONTENT -->
-    <main class="analyze-wrapper">
+    </div>
 
-        <h1 class="page-title">
-            <i class="fas fa-microscope"></i> Analyze a File
-        </h1>
-        <p class="subtitle">Upload an executable to run it inside our secure virtual sandbox.</p>
+    <!-- MAIN GRID -->
+    <div class="main-grid">
 
-        <!-- UPLOAD SECTION -->
-        <div class="upload-card">
+        <!-- Network Activity -->
+        <div class="card large">
+            <h2>Network Activity</h2>
+            <img src="https://i.ibb.co/KWwySdz/temp-chart.png" class="chart">
+        </div>
 
-            <label for="file-upload" class="upload-zone">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>Drag & Drop your file here</p>
-                <span>or click to browse</span>
-            </label>
+        <!-- Threat Distribution -->
+        <div class="card large">
+            <h2>Threat Distribution</h2>
+            <img src="https://i.ibb.co/2cDmgvZ/pie-chart.png" class="chart small-chart">
+        </div>
 
-            <input id="file-upload" type="file" hidden>
+        <!-- Activity Breakdown -->
+        <div class="card large">
+            <h2>Activity Breakdown</h2>
+            <img src="https://i.ibb.co/DfKqvcd/bar-chart.png" class="chart">
+        </div>
 
-            <button class="btn-primary start-btn">
-                Start Analysis <i class="fas fa-arrow-right"></i>
-            </button>
+        <!-- Recent Alerts -->
+        <div class="card large">
+            <h2>Recent Alerts</h2>
+
+            <div class="alert high">
+                <span class="tag">High</span>
+                Suspicious network activity detected
+                <small>2 min ago</small>
+            </div>
+
+            <div class="alert mediumA">
+                <span class="tag">Medium</span>
+                Unauthorized file modification
+                <small>15 min ago</small>
+            </div>
+
+            <div class="alert low">
+                <span class="tag">Low</span>
+                Registry key accessed
+                <small>1 hour ago</small>
+            </div>
+        </div>
+
+        <!-- Modified Files -->
+        <div class="card large">
+            <h2>Modified Files</h2>
+
+            <table>
+                <tr>
+                    <th>File Path</th>
+                    <th>Action</th>
+                    <th>Risk Level</th>
+                </tr>
+
+                <tr>
+                    <td>system32/config.dll</td>
+                    <td>Modified</td>
+                    <td><span class="risk highR">High</span></td>
+                </tr>
+
+                <tr>
+                    <td>AppData/settings.json</td>
+                    <td>Created</td>
+                    <td><span class="risk lowR">Low</span></td>
+                </tr>
+
+                <tr>
+                    <td>Documents/data.txt</td>
+                    <td>Deleted</td>
+                    <td><span class="risk medR">Medium</span></td>
+                </tr>
+            </table>
 
         </div>
 
-        <!-- INFO CARDS -->
-        <div class="info-grid">
+    </div>
 
-            <div class="info-card">
-                <i class="fas fa-shield-virus"></i>
-                <h3>Malware Detection</h3>
-                <p>Behavioral and signature-based detection to identify malicious traits.</p>
-            </div>
+</main>
 
-            <div class="info-card">
-                <i class="fas fa-network-wired"></i>
-                <h3>Network Monitoring</h3>
-                <p>Outbound connections, DNS requests, packets and suspicious traffic.</p>
-            </div>
-
-            <div class="info-card">
-                <i class="fas fa-folder-tree"></i>
-                <h3>File System Tracking</h3>
-                <p>Creation, deletion or modifications of sensitive system files.</p>
-            </div>
-
-            <div class="info-card">
-                <i class="fas fa-memory"></i>
-                <h3>Runtime Behavior</h3>
-                <p>API calls, memory mapping and process injection attempts.</p>
-            </div>
-
-        </div>
-
-    </main>
-
-    <!-- FOOTER (même que login + home) -->
+<!-- FOOTER -->
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-logo">
             <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
-            <p>Analyze executable files securely in a virtual sandbox, ensuring rapid detection and real-time analysis.</p>
+            <p>Analyze executable files securely in a virtual sandbox for rapid detection.</p>
             <p class="copyright">© 2025 VEx. All rights reserved.</p>
         </div>
 
@@ -117,7 +169,6 @@
                 <a href="contact.html">Contact</a>
                 <a href="#">Documentation</a>
                 <a href="#">API Reference</a>
-                <a href="#">Privacy Policy</a>
             </div>
         </div>
     </div>
