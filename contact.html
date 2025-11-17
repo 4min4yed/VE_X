@@ -1,107 +1,112 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>VEx — Contact</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="/styles/common.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEx - Contact</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="vex-dark">
-    <header class="navbar">
-        <div class="logo">
-            <i class="fas fa-shield-alt"></i> VEx
-        </div>
-        <nav>
-            <a href="Index.html" class="active">Home</a>
-            <a href="#">Analyze</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="history.html">History</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-        <a href="login.html" class="btn-login">Login</a>
-    </header>
 
+<body>
 
-  <main class="container contact">
-    <h1 class="page-title">Contact Us</h1>
-    <p class="subtitle">Have questions about VEx? We're here to help. Send us a message and we'll respond as soon as possible.</p>
+<header class="navbar">
+    <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="analyze.html">Analyze</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="history.html">History</a>
+        <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <a class="btn-login" href="#">Login</a>
+</header>
 
-    <div class="grid">
-      <form class="contact-form" id="contactForm">
-        <h3>Send us a Message</h3>
+<main class="contact-container">
+    <h1>Contact Us</h1>
+    <p class="subtitle">Have questions about VEx? We're here to help.</p>
 
-        <div class="row">
-          <label>
-            <div class="label-text">Full Name</div>
-            <input type="text" name="name" placeholder="John Doe" required />
-          </label>
+    <div class="contact-grid">
 
-          <label>
-            <div class="label-text">Email Address</div>
-            <input type="email" name="email" placeholder="john@example.com" required />
-          </label>
-        </div>
+        <!-- Contact form -->
+        <form class="contact-form">
+            <label>Full Name</label>
+            <input type="text" placeholder="John Doe">
 
-        <label>
-          <div class="label-text">Subject</div>
-          <input name="subject" placeholder="How can we help you?" />
-        </label>
+            <label>Email Address</label>
+            <input type="email" placeholder="john@example.com">
 
-        <label>
-          <div class="label-text">Message</div>
-          <textarea name="message" placeholder="Tell us more about your inquiry..." rows="8" required></textarea>
-        </label>
+            <label>Subject</label>
+            <input type="text" placeholder="How can we help you?">
 
-        <button type="submit" class="send">✈ Send Message</button>
-        <div id="contactFeedback" aria-live="polite" style="margin-top:12px;color:#9fb6ff;display:none;">Message sent (demo)</div>
-      </form>
+            <label>Message</label>
+            <textarea placeholder="Tell us more about your inquiry..."></textarea>
 
-      <aside class="info-cards">
-        <div class="info-card">
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 6l10 7 10-7" stroke="#2ea3ff" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-          <div class="title">Email</div>
-          <div class="desc">Our team is here to help<br><a href="mailto:support@vex.com">support@vex.com</a></div>
-        </div>
+            <button class="send-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
 
-        <div class="info-card">
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6.5 3.5l3 1.2c.9.35 1.8 1.25 2.2 2.1l.9 2C14 10.5 14.2 11.4 13.8 12.1l-1.1 1.6a2 2 0 0 0 .6 2.6l1.6 1.1c.8.5 1.6.4 2.2-.1l2-.9" stroke="#2ea3ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="title">Phone</div>
-          <div class="desc">Mon-Fri from 8am to 6pm<br><a href="tel:+1234567890">+1 (234) 567-890</a></div>
-        </div>
+        <!-- Right side info -->
+        <div class="contact-info">
+            <div class="info-card">
+                <i class="fas fa-envelope"></i>
+                <h4>Email</h4>
+                <p>support@vex.com</p>
+            </div>
 
-        <div class="info-card">
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-7.5-7-12.5A7 7 0 1 1 19 8.5C19 13.5 12 21 12 21z" stroke="#2ea3ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="9" r="2" fill="#2ea3ff"/></svg></div>
-          <div class="title">Office</div>
-          <div class="desc">100 Security Boulevard<br>Cyber City, CC 12345<br>United States</div>
+            <div class="info-card">
+                <i class="fas fa-phone"></i>
+                <h4>Phone</h4>
+                <p>(+1) 234-567-890</p>
+            </div>
+
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Office</h4>
+                <p>100 Security Blvd<br>Cyber City, 12345</p>
+            </div>
+
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h4>Support Hours</h4>
+                <p>Mon–Fri: 8 AM – 6 PM<br>Saturday: 9 AM – 4 PM<br>Sunday: Closed</p>
+            </div>
         </div>
 
-        <div class="info-card support-hours">
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 7v5l3 3" stroke="#2ea3ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#2ea3ff" stroke-width="1.2" fill="none"/></svg></div>
-          <div class="title">Support Hours</div>
-          <div class="desc hours">
-            <div>Monday - Friday <span class="time">8:00 AM - 6:00 PM</span></div>
-            <div>Saturday <span class="time">9:00 AM - 4:00 PM</span></div>
-            <div>Sunday <span class="time closed">Closed</span></div>
-          </div>
-        </div>
-      </aside>
     </div>
-  </main>
+</main>
 
-  <footer class="footer">
-    <div class="container">© 2025 VEx. All rights reserved.</div>
-  </footer>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
+            <p>Analyze executable files securely in a virtual sandbox.</p>
+            <p>&copy; 2025 VEx. All rights reserved.</p>
+        </div>
 
-  <script src="/src/main.js"></script>
-  <script>
-    // Simple demo submit (frontend-only)
-    document.getElementById('contactForm')?.addEventListener('submit', function(e){
-      e.preventDefault();
-      const fb = document.getElementById('contactFeedback');
-      fb.style.display = 'block';
-      fb.textContent = 'Thanks — your message has been queued (demo).';
-      this.reset();
-    });
-  </script>
+        <div class="footer-links">
+            <div class="link-group">
+                <h4>Product</h4>
+                <a href="#">Features</a>
+                <a href="#">Analyze</a>
+                <a href="#">Dashboard</a>
+                <a href="#">History</a>
+            </div>
+            <div class="link-group">
+                <h4>Support</h4>
+                <a href="#">Contact</a>
+                <a href="#">Documentation</a>
+                <a href="#">API Reference</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
