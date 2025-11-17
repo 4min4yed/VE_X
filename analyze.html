@@ -52,6 +52,36 @@
 
         </div>
 
+        <script>    
+            document.querySelector('.start-btn').addEventListener('click', async () => {
+    const fileInput = document.getElementById('file-upload');
+    if (fileInput.files.length === 0) {
+        alert('Please select a file first.');
+        return;
+    }
+    const file = fileInput.files[0];
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+        const response = await fetch('http://localhost/api/analyze', {
+            method: 'POST',
+            body: formData
+        });
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Analysis result:', result);
+        } else {
+            console.error('Upload failed:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error uploading file:', error);
+    }
+});
+
+        </script>
+        
         <!-- INFO CARDS -->
         <div class="info-grid">
 
