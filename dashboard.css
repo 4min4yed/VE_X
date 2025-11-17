@@ -1,0 +1,224 @@
+/* GLOBAL THEME */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0e1a;
+    color: white;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Blue glow animation */
+body::before {
+    content: "";
+    position: fixed;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(30,144,255,0.25), transparent 70%);
+    filter: blur(90px);
+    animation: move 18s linear infinite;
+    z-index: -1;
+}
+
+@keyframes move {
+    0% { transform: translate(-15%, -10%); }
+    50% { transform: translate(15%, 15%); }
+    100% { transform: translate(-15%, -10%); }
+}
+
+/* NAVBAR — COPY FROM LOGIN */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(10,14,26,0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(30,144,255,0.15);
+}
+
+.logo {
+    font-family: "Poppins";
+    font-size: 1.4rem;
+    color: #1e90ff;
+    font-weight: 600;
+}
+
+nav a {
+    margin: 0 14px;
+    color: #c7c7c7;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a.active {
+    color: #1e90ff;
+}
+
+.btn-login {
+    padding: 8px 20px;
+    border: 1px solid #1e90ff;
+    border-radius: 8px;
+    color: white;
+}
+
+.btn-login:hover {
+    background: #1e90ff;
+}
+
+/* DASHBOARD */
+.dashboard {
+    padding: 50px 70px;
+}
+
+/* STATS GRID */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(30,144,255,0.15);
+    padding: 25px;
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    text-align: left;
+}
+
+.stat-card h3 {
+    font-size: 1.8rem;
+    margin-top: 10px;
+}
+
+.stat-icon {
+    font-size: 28px;
+    color: #1e90ff;
+}
+
+.stat-icon.safe { color: #4ade80; }
+.stat-icon.warning { color: #facc15; }
+.stat-icon.danger { color: #ef4444; }
+
+/* MAIN CARDS GRID */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(30,144,255,0.15);
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.card.large {
+    grid-column: span 2;
+}
+
+.card h2 {
+    font-family: "Poppins";
+    margin-bottom: 15px;
+}
+
+.chart {
+    width: 100%;
+    border-radius: 12px;
+    opacity: 0.85;
+}
+
+/* ALERTS */
+.alert {
+    padding: 14px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(30,144,255,0.15);
+    margin: 10px 0;
+}
+
+.alert small {
+    display: block;
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+.tag {
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-right: 6px;
+    font-size: 0.75rem;
+}
+
+.high .tag { background: #ef4444; }
+.mediumA .tag { background: #facc15; color: black; }
+.low .tag { background: #3b82f6; }
+
+/* TABLE */
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+table tr {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+table th {
+    text-align: left;
+    padding-bottom: 10px;
+    color: #9ca3af;
+}
+
+table td {
+    padding: 12px 0;
+}
+
+/* Risk labels */
+.risk {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+
+.highR { background: #ef4444; }
+.medR { background: #facc15; color: black; }
+.lowR { background: #4ade80; }
+
+/* FOOTER FROM LOGIN */
+.footer {
+    border-top: 1px solid rgba(30,144,255,0.15);
+    padding: 60px;
+    margin-top: 80px;
+    background: rgba(10,14,26,0.4);
+    backdrop-filter: blur(8px);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-logo p { color: #9ca3af; }
+
+.footer-links a {
+    color: #9ca3af;
+    display: block;
+    margin: 6px 0;
+}
+
+.footer-links a:hover {
+    color: #1e90ff;
+}
