@@ -3,20 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEx - Analyze</title>
     <link rel="stylesheet" href="analyze.css">
-    <title>Analyze</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+    <!-- HEADER (identique aux autres pages) -->
     <header class="navbar">
         <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
+
         <nav>
-            <a href="#" class="active">Home</a>
-            <a href="#">Analyze</a>
+            <a href="index.html">Home</a>
+            <a href="#" class="active">Analyze</a>
             <a href="dashboard.html">Dashboard</a>
-            <a href="history.html">History</a>
-            <a href="contact.html">Contact</a>
+            <a href="#">History</a>
+            <a href="#">Contact</a>
         </nav>
+
         <a href="login.html" class="btn-login">Login</a>
     </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="analyze-wrapper">
+
+        <h1 class="page-title">
+            <i class="fas fa-microscope"></i> Analyze a File
+        </h1>
+        <p class="subtitle">Upload an executable to run it inside our secure virtual sandbox.</p>
+
+        <!-- UPLOAD SECTION -->
+        <div class="upload-card">
+
+            <label for="file-upload" class="upload-zone">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag & Drop your file here</p>
+                <span>or click to browse</span>
+            </label>
+
+            <input id="file-upload" type="file" hidden>
+
+            <button class="btn-primary start-btn">
+                Start Analysis <i class="fas fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+        <!-- INFO CARDS -->
+        <div class="info-grid">
+
+            <div class="info-card">
+                <i class="fas fa-shield-virus"></i>
+                <h3>Malware Detection</h3>
+                <p>Behavioral and signature-based detection to identify malicious traits.</p>
+            </div>
+
+            <div class="info-card">
+                <i class="fas fa-network-wired"></i>
+                <h3>Network Monitoring</h3>
+                <p>Outbound connections, DNS requests, packets and suspicious traffic.</p>
+            </div>
+
+            <div class="info-card">
+                <i class="fas fa-folder-tree"></i>
+                <h3>File System Tracking</h3>
+                <p>Creation, deletion or modifications of sensitive system files.</p>
+            </div>
+
+            <div class="info-card">
+                <i class="fas fa-memory"></i>
+                <h3>Runtime Behavior</h3>
+                <p>API calls, memory mapping and process injection attempts.</p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER (identique aux autres pages) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
+                <p>Analyze executable files securely in a virtual sandbox, ensuring rapid detection and real-time analysis.</p>
+                <p class="copyright">© 2025 VEx. All rights reserved.</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Product</h4>
+                    <a href="#">Features</a>
+                    <a href="#">Analyze</a>
+                    <a href="#">Dashboard</a>
+                    <a href="#">History</a>
+                </div>
+                <div class="link-group">
+                    <h4>Support</h4>
+                    <a href="#">Contact</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
