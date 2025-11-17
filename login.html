@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VEx - Login</title>
+    <link rel="stylesheet" href="login.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR (same as home page) -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i> VEx
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">Analyze</a>
+            <a href="#">Dashboard</a>
+            <a href="#">History</a>
+            <a href="#">Contact</a>
+        </nav>
+        <a href="#" class="btn-login active">Login</a>
+    </header>
+
+    <!-- MAIN LOGIN SECTION -->
+    <main class="login-wrapper">
+        <div class="login-card">
+
+            <div class="login-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+
+            <h1>Welcome to VEx</h1>
+            <p class="subtitle">Sign in to access your security dashboard</p>
+
+            <form>
+                <!-- EMAIL -->
+                <label>Email Address</label>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="your.email@example.com" required />
+                </div>
+
+                <!-- PASSWORD -->
+                <label>Password</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="••••••••" required />
+                </div>
+
+                <div class="row-between">
+                    <label class="remember">
+                        <input type="checkbox" /> Remember me
+                    </label>
+                    <a href="#" class="forgot">Forgot password?</a>
+                </div>
+
+                <button class="btn-primary login-btn">Sign In <i class="fas fa-arrow-right"></i></button>
+            </form>
+
+            <div class="divider">
+                <span>Or continue with</span>
+            </div>
+
+            <div class="oauth-buttons">
+                <button class="oauth-btn google">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button class="oauth-btn github">
+                    <i class="fab fa-github"></i> GitHub
+                </button>
+            </div>
+
+            <p class="create">
+                Don’t have an account? <a href="#">Create account</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- FOOTER (same as home page) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i> VEx
+                </div>
+                <p>Analyze executable files securely in a virtual sandbox, ensuring rapid detection and real-time analysis.</p>
+                <p class="copyright">&copy; 2025 VEx. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Product</h4>
+                    <a href="#">Features</a>
+                    <a href="#">Analyze</a>
+                    <a href="#">Dashboard</a>
+                    <a href="#">History</a>
+                </div>
+                <div class="link-group">
+                    <h4>Support</h4>
+                    <a href="#">Contact</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

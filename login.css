@@ -1,0 +1,280 @@
+/* IMPORT GLOBAL THEME (same style) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: #0a0e1a;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* BLUE LIGHT ANIMATION */
+body::before {
+    content: "";
+    position: fixed;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(30,144,255,0.25), transparent 70%);
+    filter: blur(90px);
+    animation: lightningMove 18s infinite linear;
+    z-index: -1;
+}
+
+@keyframes lightningMove {
+    0%   { transform: translate(-15%, -10%); }
+    25%  { transform: translate(10%, -5%); }
+    50%  { transform: translate(15%, 15%); }
+    75%  { transform: translate(-10%, 10%); }
+    100% { transform: translate(-15%, -10%); }
+}
+
+/* NAVBAR — SAME AS HOME PAGE */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 60px;
+    background: rgba(10, 14, 26, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(30,144,255,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.logo {
+    font-family: "Poppins";
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1e90ff;
+}
+
+nav a {
+    margin: 0 14px;
+    color: #c7c7c7;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+nav a:hover {
+    color: #1e90ff;
+}
+
+.btn-login {
+    padding: 8px 20px;
+    border: 1px solid #1e90ff;
+    border-radius: 8px;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.btn-login:hover,
+.btn-login.active {
+    background: #1e90ff;
+    box-shadow: 0 0 12px #1e90ff;
+}
+
+/* LOGIN WRAPPER */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+/* LOGIN CARD */
+.login-card {
+    width: 420px;
+    padding: 40px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(30,144,255,0.15);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    box-shadow: 0 0 20px rgba(30,144,255,0.2);
+}
+
+.login-icon i {
+    font-size: 55px;
+    color: #1e90ff;
+    margin-bottom: 20px;
+}
+
+.login-card h1 {
+    font-family: "Poppins";
+    font-size: 1.8rem;
+}
+
+.subtitle {
+    color: #9ca3af;
+    margin-bottom: 30px;
+}
+
+/* INPUT FIELDS */
+label {
+    display: block;
+    text-align: left;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.input-field {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.05);
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(30,144,255,0.2);
+}
+
+.input-field i {
+    color: #1e90ff;
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.input-field input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: white;
+    font-size: 0.95rem;
+}
+
+/* REMEMBER + FORGOT */
+.row-between {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #c7c7c7;
+}
+
+.forgot {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+    width: 100%;
+    margin-top: 28px;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.login-btn i {
+    margin-left: 8px;
+}
+
+/* DIVIDER */
+.divider {
+    margin: 25px 0;
+    text-align: center;
+    color: #9ca3af;
+    position: relative;
+}
+
+.divider span {
+    background: #0a0e1a;
+    padding: 0 10px;
+}
+
+/* SOCIAL BUTTONS */
+.oauth-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.oauth-btn {
+    flex: 1;
+    padding: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(30,144,255,0.2);
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.oauth-btn:hover {
+    border-color: #1e90ff;
+    box-shadow: 0 0 12px rgba(30,144,255,0.3);
+}
+
+.oauth-btn i {
+    margin-right: 8px;
+}
+
+/* CREATE ACCOUNT */
+.create {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #9ca3af;
+}
+
+.create a {
+    color: #1e90ff;
+}
+
+/* FOOTER (same as home page) */
+/* =======================
+   FOOTER
+   ======================= */
+
+.footer {
+    border-top: 1px solid rgba(30,144,255,0.15);
+    padding: 60px;
+    margin-top: 150px;
+    background: rgba(10,14,26,0.4);
+    backdrop-filter: blur(8px);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    max-width: 300px;
+}
+
+.footer-logo p {
+    margin-top: 15px;
+    color: #9ca3af;
+}
+
+.footer-links {
+    display: flex;
+    gap: 60px;
+}
+
+.footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    display: block;
+    margin: 6px 0;
+    transition: 0.25s ease;
+}
+
+.footer-links a:hover {
+    color: #1e90ff;
+}
