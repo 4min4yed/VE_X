@@ -7,11 +7,15 @@ import os
 app = FastAPI()
 
 UPLOAD_DIR = "uploads"
+file_number = 1
 
 @app.post("/api/analyze")
 async def upload(file: UploadFile):
     file_id = str(uuid.uuid4())
-    file_path = f"{UPLOAD_DIR}/{file_id}.exe"
+    global file_number
+    
+    file_path = f"{UPLOAD_DIR}/{file_number}.exe"
+    file_number += 1
 
     # Save
     with open(file_path, "wb") as f:
