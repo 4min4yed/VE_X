@@ -1,157 +1,138 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>VEx — History</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <!-- If your project provides a global CSS (Tailwind or similar), keep it;
-       otherwise the page will use the local common.css below -->
-  <link rel="stylesheet" href="/styles/common.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEx - Analysis History</title>
+
+    <link rel="stylesheet" href="styles.css"> <!-- your main global CSS -->
+    <link rel="stylesheet" href="history.css"> <!-- page-specific CSS -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="vex-dark">
-  <header class="navbar">
-    <div class="brand">
-      <!-- shield icon -->
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 12l9-7 9 7v6a1 1 0 0 1-1 1h-16a1 1 0 0 1-1-1z" stroke="#2ea3ff" stroke-width="1.8" stroke-linejoin="round"/></svg>
-      <span>VEx</span>
-    </div>
 
-    <nav class="navlinks">
-      <a href="#">Home</a>
-      <a href="#">Analyze</a>
-      <a href="#">Dashboard</a>
-      <a class="active" href="history.html">History</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <button class="login">Login</button>
-  </header>
-
-  <main class="container">
-    <h1 class="page-title">Analysis History</h1>
-    <p class="subtitle">View and manage your previous file analyses</p>
-
-    <section class="controls-row">
-      <div class="search">
-        <svg class="search-ico" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17.65 17.65A8 8 0 1 0 9.65 1.65a8 8 0 0 0 8 16z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
-        <input placeholder="Search by filename..." aria-label="Search history" />
-      </div>
-
-      <button class="btn filter">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 5h18M6 12h12M10 19h4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Filter by Date
-      </button>
-    </section>
-
-    <section class="stats-grid" aria-hidden>
-      <div class="stat-card safe">
-        <div class="stat-left">
-          <svg viewBox="0 0 24 24" width="44" height="44" fill="none"><circle cx="12" cy="12" r="10" stroke="#00ff95" stroke-width="1.6" fill="rgba(0,255,149,0.04)"/><path d="M7 12l3 3 7-7" stroke="#00ff95" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i> VEx
         </div>
-        <div class="stat-body"><div class="stat-count">5</div><div class="stat-label">Safe Files</div></div>
-      </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="analyze.html">Analyze</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="history.html" class="active">History</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <a href="#" class="btn-login">Login</a>
+    </header>
 
-      <div class="stat-card suspicious">
-        <div class="stat-left">
-          <svg viewBox="0 0 24 24" width="44" height="44" fill="none"><circle cx="12" cy="12" r="10" stroke="#ffd43b" stroke-width="1.6" fill="rgba(255,212,59,0.03)"/><path d="M12 8v5" stroke="#ffd43b" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="#ffd43b"/></svg>
-        </div>
-        <div class="stat-body"><div class="stat-count">3</div><div class="stat-label">Suspicious</div></div>
-      </div>
+    <main class="history-container">
+        <h1>Analysis History</h1>
+        <p class="subtitle">View and manage your previous file analyses</p>
 
-      <div class="stat-card malicious">
-        <div class="stat-left">
-          <svg viewBox="0 0 24 24" width="44" height="44" fill="none"><circle cx="12" cy="12" r="10" stroke="#ff4e4e" stroke-width="1.6" fill="rgba(255,78,78,0.03)"/><path d="M15 9l-6 6M9 9l6 6" stroke="#ff4e4e" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </div>
-        <div class="stat-body"><div class="stat-count">2</div><div class="stat-label">Malicious</div></div>
-      </div>
-    </section>
-
-    <section class="history-list" id="historyList">
-      <!-- History item (replicated style) -->
-      <article class="history-item safe">
-        <div class="item-left">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" width="36" height="36" fill="none"><path d="M7 12l3 3 7-7" stroke="#00ff95" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+        <!-- Search bar + filter -->
+        <div class="history-controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search by filename...">
+            </div>
+            <button class="filter-btn">
+                <i class="fas fa-filter"></i> Filter by Date
+            </button>
         </div>
 
-        <div class="item-meta">
-          <div class="filename">system_update.exe</div>
-          <div class="meta-sub">2025-11-08 14:32 • 2.4 MB • 0 threats detected</div>
+        <!-- Counters -->
+        <div class="status-cards">
+            <div class="status-card safe">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <h3>5</h3>
+                    <p>Safe Files</p>
+                </div>
+            </div>
+
+            <div class="status-card suspicious">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <h3>3</h3>
+                    <p>Suspicious</p>
+                </div>
+            </div>
+
+            <div class="status-card malicious">
+                <i class="fas fa-times-circle"></i>
+                <div>
+                    <h3>2</h3>
+                    <p>Malicious</p>
+                </div>
+            </div>
         </div>
 
-        <div class="item-actions">
-          <span class="badge safe">Safe</span>
-          <button class="icon-btn download" title="Download">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-      </article>
+        <!-- History list -->
+        <div class="history-list">
 
-      <article class="history-item safe">
-        <div class="item-left">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" width="36" height="36" fill="none"><path d="M7 12l3 3 7-7" stroke="#00ff95" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </div>
+            <div class="history-item">
+                <div class="icon"><i class="fas fa-file"></i></div>
+                <div class="file-info">
+                    <h4>system_update.exe</h4>
+                    <p>2025-11-08 • 2.4 MB • 0 threats detected</p>
+                </div>
+                <span class="badge safe">Safe</span>
+                <button class="view-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
 
-        <div class="item-meta">
-          <div class="filename">installer_v2.exe</div>
-          <div class="meta-sub">2025-11-08 13:15 • 5.1 MB • 0 threats detected</div>
-        </div>
+            <div class="history-item">
+                <div class="icon"><i class="fas fa-file"></i></div>
+                <div class="file-info">
+                    <h4>crack_tool.exe</h4>
+                    <p>2025-11-08 • 892 KB • 12 threats detected</p>
+                </div>
+                <span class="badge malicious">Malicious</span>
+                <button class="view-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
 
-        <div class="item-actions">
-          <span class="badge safe">Safe</span>
-          <button class="icon-btn download" title="Download">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-      </article>
-
-      <article class="history-item suspicious">
-        <div class="item-left">
-          <div class="icon">
-            <svg viewBox="0 0 24 24" width="36" height="36" fill="none"><path d="M12 8v5" stroke="#ffd43b" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="#ffd43b"/></svg>
-          </div>
+            <!-- Add more items as needed -->
         </div>
 
-        <div class="item-meta">
-          <div class="filename">data_collector.exe</div>
-          <div class="meta-sub">2025-11-07 14:03 • 672 KB • 5 threats detected</div>
+        <!-- Pagination -->
+        <div class="pagination">
+            <button>Previous</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>Next</button>
         </div>
+    </main>
 
-        <div class="item-actions">
-          <span class="badge suspicious">Suspicious</span>
-          <button class="icon-btn download" title="Download">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
+                <p>Analyze executable files securely in a virtual sandbox.</p>
+                <p>&copy; 2025 VEx. All rights reserved.</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Product</h4>
+                    <a href="#">Features</a>
+                    <a href="#">Analyze</a>
+                    <a href="#">Dashboard</a>
+                    <a href="#">History</a>
+                </div>
+                <div class="link-group">
+                    <h4>Support</h4>
+                    <a href="#">Contact</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
         </div>
-      </article>
-    </section>
-
-    <nav class="pagination" aria-label="Pagination">
-      <button class="page">Previous</button>
-      <button class="page active">1</button>
-      <button class="page">2</button>
-      <button class="page">3</button>
-      <button class="page">Next</button>
-    </nav>
-  </main>
-
-  <footer class="footer">
-    <div class="container">© 2025 VEx. All rights reserved.</div>
-  </footer>
-
-  <script src="/src/main.js"></script>
-  <script>
-    // simple client-side search filter (desktop-only)
-    document.querySelector('.search input')?.addEventListener('input', function(e){
-      const q = this.value.trim().toLowerCase();
-      document.querySelectorAll('.history-item').forEach(it=>{
-        const name = it.querySelector('.filename').textContent.toLowerCase();
-        it.style.display = name.includes(q) ? 'flex' : 'none';
-      });
-    });
-  </script>
+    </footer>
 </body>
 </html>

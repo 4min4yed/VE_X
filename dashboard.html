@@ -4,158 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VEx - Dashboard</title>
+
+    <!-- GLOBAL + PAGE STYLES -->
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
+
+    <!-- ICONS + FONTS -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- NAVBAR (Identique aux autres pages) -->
-    <header class="navbar">
-        <div class="logo">
-            <i class="fas fa-shield-alt"></i> VEx
-        </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="#">Analyze</a>
-            <a href="#" class="active">Dashboard</a>
-            <a href="history.html">History</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-        <a href="login.html" class="btn-login">Login</a>
-    </header>
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
 
-    <!-- DASHBOARD MAIN -->
-    <main class="dashboard">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="analyze.html">Analyze</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="history.html">History</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 
-        <!-- TOP STATS -->
-        <div class="stats-grid">
+    <a href="login.html" class="btn-login">Login</a>
+</header>
 
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-wave-square"></i></div>
-                <h3>1,247</h3>
-                <p>Total Scans</p>
-            </div>
+<main class="dashboard">
 
-            <div class="stat-card">
-                <div class="stat-icon safe"><i class="fas fa-file-alt"></i></div>
-                <h3>848</h3>
-                <p>Safe Files</p>
-            </div>
+    <h1 class="page-title">Analysis Dashboard</h1>
+    <p class="page-subtitle">Real-time monitoring and threat intelligence</p>
 
-            <div class="stat-card">
-                <div class="stat-icon warning"><i class="fas fa-exclamation-circle"></i></div>
-                <h3>274</h3>
-                <p>Suspicious</p>
-            </div>
+    <!-- TOP CARDS -->
+    <div class="stats-grid">
 
-            <div class="stat-card">
-                <div class="stat-icon danger"><i class="fas fa-radiation"></i></div>
-                <h3>125</h3>
-                <p>Malicious</p>
-            </div>
-
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-wave-square"></i></div>
+            <h3>1,247</h3>
+            <p>Total Scans</p>
         </div>
 
-        <!-- MAIN GRID -->
-        <div class="dashboard-grid">
+        <div class="stat-card">
+            <div class="stat-icon safe"><i class="fas fa-file-alt"></i></div>
+            <h3>848</h3>
+            <p>Safe Files</p>
+        </div>
 
-            <div class="card large">
-                <h2>Network Activity</h2>
-                <img src="https://i.ibb.co/KWwySdz/temp-chart.png" class="chart">
+        <div class="stat-card">
+            <div class="stat-icon warning"><i class="fas fa-exclamation-triangle"></i></div>
+            <h3>274</h3>
+            <p>Suspicious</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon danger"><i class="fas fa-skull-crossbones"></i></div>
+            <h3>125</h3>
+            <p>Malicious</p>
+        </div>
+
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="main-grid">
+
+        <!-- Network Activity -->
+        <div class="card large">
+            <h2>Network Activity</h2>
+            <img src="https://i.ibb.co/KWwySdz/temp-chart.png" class="chart">
+        </div>
+
+        <!-- Threat Distribution -->
+        <div class="card large">
+            <h2>Threat Distribution</h2>
+            <img src="https://i.ibb.co/2cDmgvZ/pie-chart.png" class="chart small-chart">
+        </div>
+
+        <!-- Activity Breakdown -->
+        <div class="card large">
+            <h2>Activity Breakdown</h2>
+            <img src="https://i.ibb.co/DfKqvcd/bar-chart.png" class="chart">
+        </div>
+
+        <!-- Recent Alerts -->
+        <div class="card large">
+            <h2>Recent Alerts</h2>
+
+            <div class="alert high">
+                <span class="tag">High</span>
+                Suspicious network activity detected
+                <small>2 min ago</small>
             </div>
 
-            <div class="card medium">
-                <h2>Threat Distribution</h2>
-                <img src="https://i.ibb.co/2cDmgvZ/pie-chart.png" class="chart">
+            <div class="alert mediumA">
+                <span class="tag">Medium</span>
+                Unauthorized file modification
+                <small>15 min ago</small>
             </div>
 
-            <div class="card medium">
-                <h2>Recent Alerts</h2>
-
-                <div class="alert high">
-                    <span class="tag">High</span>
-                    Suspicious network activity detected
-                    <small>2 min ago</small>
-                </div>
-
-                <div class="alert mediumA">
-                    <span class="tag">Medium</span>
-                    Unauthorized file modification
-                    <small>15 min ago</small>
-                </div>
-
-                <div class="alert low">
-                    <span class="tag">Low</span>
-                    Registry key accessed
-                    <small>1 hour ago</small>
-                </div>
+            <div class="alert low">
+                <span class="tag">Low</span>
+                Registry key accessed
+                <small>1 hour ago</small>
             </div>
+        </div>
 
-            <div class="card large">
-                <h2>Modified Files</h2>
+        <!-- Modified Files -->
+        <div class="card large">
+            <h2>Modified Files</h2>
 
-                <table>
-                    <tr>
-                        <th>File Path</th>
-                        <th>Action</th>
-                        <th>Risk</th>
-                    </tr>
+            <table>
+                <tr>
+                    <th>File Path</th>
+                    <th>Action</th>
+                    <th>Risk Level</th>
+                </tr>
 
-                    <tr>
-                        <td>system32/config.dll</td>
-                        <td>Modified</td>
-                        <td><span class="risk highR">High</span></td>
-                    </tr>
+                <tr>
+                    <td>system32/config.dll</td>
+                    <td>Modified</td>
+                    <td><span class="risk highR">High</span></td>
+                </tr>
 
-                    <tr>
-                        <td>AppData/settings.json</td>
-                        <td>Created</td>
-                        <td><span class="risk lowR">Low</span></td>
-                    </tr>
+                <tr>
+                    <td>AppData/settings.json</td>
+                    <td>Created</td>
+                    <td><span class="risk lowR">Low</span></td>
+                </tr>
 
-                    <tr>
-                        <td>Documents/data.txt</td>
-                        <td>Deleted</td>
-                        <td><span class="risk medR">Medium</span></td>
-                    </tr>
-                </table>
-
-            </div>
+                <tr>
+                    <td>Documents/data.txt</td>
+                    <td>Deleted</td>
+                    <td><span class="risk medR">Medium</span></td>
+                </tr>
+            </table>
 
         </div>
 
-    </main>
+    </div>
 
-    <!-- FOOTER (même que login + home) -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
-                <p>Analyze executable files securely in a virtual sandbox, ensuring rapid detection and real-time analysis.</p>
-                <p class="copyright">© 2025 VEx. All rights reserved.</p>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <div class="logo"><i class="fas fa-shield-alt"></i> VEx</div>
+            <p>Analyze executable files securely in a virtual sandbox for rapid detection.</p>
+            <p class="copyright">© 2025 VEx. All rights reserved.</p>
+        </div>
+
+        <div class="footer-links">
+            <div class="link-group">
+                <h4>Product</h4>
+                <a href="#">Features</a>
+                <a href="analyze.html">Analyze</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="history.html">History</a>
             </div>
 
-            <div class="footer-links">
-                <div class="link-group">
-                    <h4>Product</h4>
-                    <a href="#">Features</a>
-                    <a href="#">Analyze</a>
-                    <a href="#">Dashboard</a>
-                    <a href="#">History</a>
-                </div>
-                <div class="link-group">
-                    <h4>Support</h4>
-                    <a href="#">Contact</a>
-                    <a href="#">Documentation</a>
-                    <a href="#">API Reference</a>
-                    <a href="#">Privacy Policy</a>
-                </div>
+            <div class="link-group">
+                <h4>Support</h4>
+                <a href="contact.html">Contact</a>
+                <a href="#">Documentation</a>
+                <a href="#">API Reference</a>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
 </body>
 </html>
