@@ -33,7 +33,3 @@ HTTP/1.1 200 OK
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: *
 Access-Control-Allow-Headers: *```
-frk
-
-000
-coucou les amies 
