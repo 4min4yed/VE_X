@@ -2,9 +2,19 @@ from fastapi import FastAPI, UploadFile
 import hashlib
 import shutil
 import uuid
-import os
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# ---- ENABLE CORS ----
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 UPLOAD_DIR = "uploads"
 file_number = 1
@@ -14,7 +24,7 @@ async def upload(file: UploadFile):
     file_id = str(uuid.uuid4())
     global file_number
     
-    file_path = f"{UPLOAD_DIR}/{file_number}.exe"
+    file_path = f"{UPLOAD_DIR}/file{file_number}.exe"
     file_number += 1
 
     # Save
