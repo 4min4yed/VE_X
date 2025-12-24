@@ -9,7 +9,6 @@ from mysql.connector import Error as MySQLError
 app = FastAPI()
 
 UPLOAD_DIR = os.environ.get("UPLOAD_DIR", "uploads")
-file_number = 1
 
 # DB config from environment with sensible defaults
 DB_HOST = os.environ.get("DB_HOST", "localhost")
@@ -36,8 +35,9 @@ async def upload(file: UploadFile):
     # Ensure upload directory exists
     os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-    file_path = f"{UPLOAD_DIR}/{file_number}.exe"
-    file_number += 1
+    # Use a UUID-based filename to avoid collisions and accidental overwrites
+    stored_filename = f"{uuid.uuid4()}.exe"
+    file_path = os.path.join(UPLOAD_DIR, stored_filename)
 
     # Save uploaded file
     try:
@@ -72,9 +72,10 @@ async def upload(file: UploadFile):
             user_id = cur.lastrowid
 
         # Insert file record
+        original_filename = getattr(file, 'filename', stored_filename)
         cur.execute(
             "INSERT INTO files (user_id, filename, stored_path, file_hash) VALUES (%s, %s, %s, %s)",
-            (user_id, getattr(file, 'filename', f"{file_number}.exe"), file_path, digest),
+            (user_id, original_filename, file_path, digest),
         )
         file_db_id = cur.lastrowid
 
