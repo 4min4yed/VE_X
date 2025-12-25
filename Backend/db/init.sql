@@ -6,6 +6,8 @@ CREATE TABLE IF NOT EXISTS users (
     role ENUM('user','admin') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+INSERT INTO users (username, email, password_hash, role)
+VALUES ('admin', 'admin@vex.local', 'INIT', 'admin');
 
 CREATE TABLE IF NOT EXISTS files (
     id INT AUTO_INCREMENT PRIMARY KEY,
