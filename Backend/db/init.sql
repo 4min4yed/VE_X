@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS files (
     filename VARCHAR(255) NOT NULL,
     stored_path VARCHAR(255) NOT NULL,
     file_hash VARCHAR(128),
+    file_size BIGINT NOT NULL,
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
