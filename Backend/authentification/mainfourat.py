@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException #fastapi tools and error handling
+from fastapi.security import httpBearer, HTTPAuthorizationCredentials #security tools for handling bearer tokens
 from pydantic import BaseModel #validation of the data (password and email)
 from jose import jwt #JWT creation and verification
 
@@ -47,10 +48,14 @@ def login(request: LoginRequest):
     raise HTTPException(status_code=400, detail="Wrong email or password")
 
     
-# Run the app with: uvicorn Backend.authentification.mainfourat:app --reload
+# Run the app with: python -m uvicorn Backend.authentification.mainfourat:app --reload
+
+
 class RegisterRequest(BaseModel):
     email: str
     password: str
+
+
 @app.post("/register")
 def register(request: RegisterRequest):
     #check if user already exists

@@ -24,24 +24,26 @@
 
         <!-- UPLOAD SECTION -->
         <div class="upload-card">
+            <form onsubmit="return false;"></form>
+                <!--<label for="file-upload" class="upload-zone">-->
+                <div class="upload-zone" onclick="document.getElementById('file-upload').click()"></div>
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & Drop your file here</p>
+                    <span>or click to browse</span>
+                </label>
 
-            <label for="file-upload" class="upload-zone">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>Drag & Drop your file here</p>
-                <span>or click to browse</span>
-            </label>
+                <input id="file-upload" type="file" hidden>
 
-            <input id="file-upload" type="file" hidden>
-
-            <button type="button" class="btn-primary start-btn">
-                Start Analysis <i class="fas fa-arrow-right"></i>
-            </button>   
-
+                <button type="button" class="btn-primary start-btn">
+                    Start Analysis <i class="fas fa-arrow-right"></i>
+                </button>   
+            </form>
         </div> 
 
         <script>    
             document.querySelector('.start-btn').addEventListener('click', async (event) => {
                 event.preventDefault();
+                event.stopPropagation();
     const fileInput = document.getElementById('file-upload');
     if (fileInput.files.length === 0) {
         alert('Please select a file first.');
