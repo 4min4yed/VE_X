@@ -1,0 +1,2 @@
+USERS = []
+REFRESH_TOKENS = {}
