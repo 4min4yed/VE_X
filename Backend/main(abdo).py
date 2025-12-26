@@ -79,6 +79,11 @@ async def upload(file: UploadFile):
             (user_id, original_filename, file_path, digest, file_size),
         )
         file_db_id = cur.lastrowid
+        # Create analysis entry with pending status
+        cur.execute(
+            "INSERT INTO analyses (file_id, status) VALUES (%s, %s)",
+            (file_db_id, "pending"),
+        )
 
         conn.commit() 
         cur.close()
