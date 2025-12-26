@@ -1,5 +1,9 @@
 Here are some notes of new things we learnt in this project:
 
++*REDIS*
+is a DB stores data in RAM => Fast but Volatile / persistance
+
+
 +*Fastapi needs the UploadFile lib to deal with file uploads*
 
 +*LiveServer bliiid, ken l'script mte3k ya3ml modification (yzid wele yna99as fichieet) fl directories mte3k, yreloadi <=solution=> 
