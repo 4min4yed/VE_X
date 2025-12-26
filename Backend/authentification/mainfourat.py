@@ -9,17 +9,21 @@ from passlib.context import CryptContext #password hashing
 
 app = FastAPI(title="Simple Login API - Permanent Token") #API instance that gives you ip to get access 
 
-# Fake user (in memory)
-FAKE_USER = {
-    "id": 1,
-    "email": "user@example.com",
-    "password": "12345"
-}
 # Fake database (in memory)
 USERS = []
 
 SECRET_KEY = "supersecret" # Secret key for JWT
 ALGORITHM = "HS256" # Algorithm used for JWT
+
+#password hashing context
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def hash_password(password: str) -> str:
+    return pwd_context.hash(password)
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)
+
 
 class LoginRequest(BaseModel): #data model for login request
     email: str
@@ -70,7 +74,7 @@ def register(request: RegisterRequest):
     new_user = {
         "id": len(USERS) + 1,
         "email": request.email,
-        "password": hash_password(request.password) #hash the password before storing
+        "password": hash_password(request.password) #hash the password before storing 
     }
     USERS.append(new_user)
     token = create_token(new_user["id"], new_user["email"])
@@ -104,11 +108,4 @@ def read_profile(current_user: dict = Depends(get_current_user)): #access curren
         "user": current_user
     }
 
-#password hashing context
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
-
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
