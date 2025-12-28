@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VEx - Login</title>
+    <title>VEx - Register</title>
+
+    <!-- SAME CSS -->
     <link rel="stylesheet" href="login.css" />
+
+    <!-- FONTS & ICONS -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -13,44 +17,53 @@
 
     <div id="site-header"></div>
 
-    <!-- MAIN LOGIN SECTION -->
+    <!-- MAIN REGISTER SECTION -->
     <main class="login-wrapper">
         <div class="login-card">
 
             <div class="login-icon">
-                <i class="fas fa-shield-alt"></i>
+                <i class="fas fa-user-plus"></i>
             </div>
 
-            <h1>Welcome to VEx</h1>
-            <p class="subtitle">Sign in to access your security dashboard</p>
+            <h1>Create Account</h1>
+            <p class="subtitle">Join VEx and secure your workspace</p>
 
-            <form id="loginForm">
+            <form>
+                <!-- USERNAME -->
+                <label>Username</label>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="your_username" required />
+                </div>
+
                 <!-- EMAIL -->
                 <label>Email Address</label>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input id="email" type="email" placeholder="your.email@example.com" required />
+                    <input type="email" placeholder="your.email@example.com" required />
                 </div>
 
                 <!-- PASSWORD -->
                 <label>Password</label>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input id="password" type="password" placeholder="••••••••" required />
+                    <input type="password" placeholder="••••••••" required />
                 </div>
 
-                <div class="row-between">
-                    <label class="remember">
-                        <input type="checkbox" /> Remember me
-                    </label>
-                    <a href="#" class="forgot">Forgot password?</a>
+                <!-- CONFIRM PASSWORD -->
+                <label>Confirm Password</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="••••••••" required />
                 </div>
 
-                <button class="btn-primary login-btn">Sign In <i class="fas fa-arrow-right"></i></button>
+                <button class="btn-primary login-btn">
+                    Create Account <i class="fas fa-arrow-right"></i>
+                </button>
             </form>
 
             <div class="divider">
-                <span>Or continue with</span>
+                <span>Or sign up with</span>
             </div>
 
             <div class="oauth-buttons">
@@ -63,14 +76,13 @@
             </div>
 
             <p class="create">
-                Don’t have an account? <a href="register.html">Create account</a>
+                Already have an account? <a href="login.html">Sign in</a>
             </p>
         </div>
     </main>
 
     <div id="site-footer"></div>
     <script src="partials/load-partials.js"></script>
-</main>
 
 </body>
 </html>

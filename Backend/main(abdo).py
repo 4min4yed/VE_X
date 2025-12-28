@@ -5,11 +5,11 @@ import uuid
 import os
 import mysql.connector
 from mysql.connector import Error as MySQLError
+from typing import List
 
 app = FastAPI()
 
 UPLOAD_DIR = os.environ.get("UPLOAD_DIR", "uploads")
-file_number = 1
 
 # DB config from environment with sensible defaults
 DB_HOST = os.environ.get("DB_HOST", "localhost")
@@ -36,8 +36,9 @@ async def upload(file: UploadFile):
     # Ensure upload directory exists
     os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-    file_path = f"{UPLOAD_DIR}/{file_number}.exe"
-    file_number += 1
+    # Use a UUID-based filename to avoid collisions and accidental overwrites
+    stored_filename = f"{uuid.uuid4()}.exe"
+    file_path = os.path.join(UPLOAD_DIR, stored_filename)
 
     # Save uploaded file
     try:
@@ -45,9 +46,9 @@ async def upload(file: UploadFile):
             shutil.copyfileobj(file.file, f)
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Failed to save file: {e}")
-
+    file_size = os.path.getsize(file_path) #getting file size
     # Compute SHA256
-    sha256 = hashlib.sha256()
+    sha256 = hashlib.sha256() 
     try:
         with open(file_path, "rb") as f:
             for block in iter(lambda: f.read(4096), b""):
@@ -59,12 +60,12 @@ async def upload(file: UploadFile):
 
     # Persist metadata to DB: ensure a default user exists, then insert into files
     try:
-        conn = get_db_connection()
-        cur = conn.cursor()
+        conn = get_db_connection() 
+        cur = conn.cursor() 
 
         # Ensure a default anonymous user exists and get its id
         cur.execute("SELECT id FROM users WHERE username = %s LIMIT 1", ("anonymous",))
-        row = cur.fetchone()
+        row = cur.fetchone() 
         if row:
             user_id = row[0]
         else:
@@ -72,13 +73,19 @@ async def upload(file: UploadFile):
             user_id = cur.lastrowid
 
         # Insert file record
+        original_filename = getattr(file, 'filename', stored_filename)
         cur.execute(
-            "INSERT INTO files (user_id, filename, stored_path, file_hash) VALUES (%s, %s, %s, %s)",
-            (user_id, getattr(file, 'filename', f"{file_number}.exe"), file_path, digest),
+            "INSERT INTO files (user_id, filename, stored_path, file_hash, file_size) VALUES (%s, %s, %s, %s, %s)",
+            (user_id, original_filename, file_path, digest, file_size),
         )
         file_db_id = cur.lastrowid
+        # Create analysis entry with pending status
+        cur.execute(
+            "INSERT INTO analyses (file_id, status) VALUES (%s, %s)",
+            (file_db_id, "pending"),
+        )
 
-        conn.commit()
+        conn.commit() 
         cur.close()
         conn.close()
     except MySQLError as e:
@@ -90,3 +97,37 @@ async def upload(file: UploadFile):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Database error: {e}")
 
     return {"id": file_id, "hash": digest, "db_id": file_db_id}
+
+@app.get("/api/files")
+def get_user_files(user_id: int):
+
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(dictionary=True)
+
+        query = """
+            SELECT
+                f.id AS file_id,
+                f.filename,
+                f.uploaded_at,
+                a.status,
+                a.score
+            FROM files f
+            LEFT JOIN analyses a ON f.id = a.file_id
+            WHERE f.user_id = %s
+            ORDER BY f.uploaded_at DESC
+        """
+        cur.execute(query, (user_id,))
+        results = cur.fetchall()
+
+        cur.close()
+        conn.close()
+
+        return {"files": results}
+
+    except MySQLError as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Database error: {e}"
+        )
+
