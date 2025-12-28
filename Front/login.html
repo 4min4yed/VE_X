@@ -24,19 +24,19 @@
             <h1>Welcome to VEx</h1>
             <p class="subtitle">Sign in to access your security dashboard</p>
 
-            <form>
+            <form id="loginForm">
                 <!-- EMAIL -->
                 <label>Email Address</label>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" placeholder="your.email@example.com" required />
+                    <input id="email" type="email" placeholder="your.email@example.com" required />
                 </div>
 
                 <!-- PASSWORD -->
                 <label>Password</label>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="••••••••" required />
+                    <input id="password" type="password" placeholder="••••••••" required />
                 </div>
 
                 <div class="row-between">
@@ -70,6 +70,7 @@
 
     <div id="site-footer"></div>
     <script src="partials/load-partials.js"></script>
+</main>
 
 </body>
 </html>

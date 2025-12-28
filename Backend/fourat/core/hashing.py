@@ -1,3 +1,4 @@
+# core.hashing.py - provides password hashing and verification utilities
 from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

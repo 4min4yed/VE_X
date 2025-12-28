@@ -1,3 +1,4 @@
+# core.config.py - configuration settings for the application // centralize secrets & constants
 import os
 
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-change-me")

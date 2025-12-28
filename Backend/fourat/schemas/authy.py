@@ -1,3 +1,4 @@
+#schemas.authy.py - defines Pydantic models for authentication requests
 from pydantic import BaseModel, EmailStr, field_validator
 
 class LoginRequest(BaseModel):
@@ -15,5 +16,5 @@ class RegisterRequest(BaseModel):
             raise ValueError("Password must be at least 8 characters")
         return v
 
-class RefreshRequest(BaseModel):
+class RefreshRequest(BaseModel): 
     refresh_token: str
