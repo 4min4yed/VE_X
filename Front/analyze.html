@@ -55,7 +55,7 @@
     formData.append('file', file);
     
     try {
-        const response = await fetch('http://localhost:8081/api/analyze', {
+        const response = await fetch('http://localhost:6560/api/analyze', {
             method: 'POST',
             body: formData
         });

@@ -27,7 +27,7 @@ async def upload(file: UploadFile):
         file_id = str(uuid.uuid4())
         global file_number
         
-        file_path = f"{UPLOAD_DIR}/file_{file.filename}.exe"
+        file_path = f"{UPLOAD_DIR}/{file.filename}"
         file_number += 1
 
         # Save
