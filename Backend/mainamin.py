@@ -4,8 +4,8 @@ import shutil
 import uuid
 from fastapi.middleware.cors import CORSMiddleware
 import pika
-
-#start it with: uvicorn  main:app --reload --host 0.0.0.0 --port 8081
+import json
+#start it with: uvicorn  mainamin:app --reload --host 0.0.0.0 --port 6560
 app = FastAPI()
 
 # ---- ENABLE CORS ----
@@ -41,15 +41,19 @@ async def upload(file: UploadFile):
         channel = connection.channel()
 
         #  Create the queue if it doesn't exist
-        channel.queue_declare(queue='vm_tasks')
+        job = {
+             "job_id": file_id,
+            "file_path": file_path
+        }
 
-        #  Send the file path as the message body
-        channel.basic_publish(#send to the queue
+        channel.queue_declare(queue='analysis_queue', durable=True)
+
+        channel.basic_publish(
             exchange='',
-            routing_key='vm_tasks',#where to send the body
-            body=file_path
+            routing_key='analysis_queue',
+            body=json.dumps(job).encode()
         )
-
+        
         connection.close()
 
         # Hash
