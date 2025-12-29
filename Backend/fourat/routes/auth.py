@@ -2,7 +2,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from schemas.authy import LoginRequest, RegisterRequest, RefreshRequest
 from core.hashing import hash_password, verify_password
-from core.security import create_access_token,create_refresh_token, get_current_user
+from core.security import create_access_token,create_refresh_token, get_current_user, verify_refresh_token
 from database.fake_db import USERS, REFRESH_TOKENS
 from jose import jwt, JWTError
 from core.config import SECRET_KEY, ALGORITHM
@@ -26,7 +26,8 @@ def login(request: LoginRequest):
                 "refresh_token": refresh_token
             }
 
-        raise HTTPException(status_code=401, detail="Invalid email or password")
+        
+    raise HTTPException(status_code=401, detail="Invalid email or password")
 
 @router.post("/register")
 def register(request: RegisterRequest):
@@ -59,3 +60,26 @@ def me(user=Depends(get_current_user)):
 def logout(request: RefreshRequest):
     REFRESH_TOKENS.pop(request.refresh_token, None) #remove the refresh token from the store
     return {"success": True}
+
+@router.post("/refresh")
+def refresh(request: RefreshRequest):
+    # validate the refresh token and issue new tokens (rotate refresh token)
+    user_id = verify_refresh_token(request.refresh_token)
+
+    # optional: revoke existing refresh token to force rotation (single use)
+    REFRESH_TOKENS.pop(request.refresh_token, None)
+
+    # issue new tokens
+    # find user email for token creation
+    user = next((u for u in USERS if u["id"] == user_id), None)
+    if not user:
+        raise HTTPException(status_code=401, detail="User not found for refresh token")
+
+    access_token = create_access_token(user["id"], user["email"])
+    refresh_token = create_refresh_token(user["id"])
+    return {
+        "success": True,
+        "access_token": access_token,
+        "refresh_token": refresh_token
+    }
+
