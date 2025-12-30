@@ -40,9 +40,28 @@ def get_current_user(
         
         return {
             "id": payload["sub"],
-            "email": payload["email"]
+            "email": payload["email"],
+            "username": payload.get("username")
         }
     except ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
+
+def verify_refresh_token(token: str):
+    # Verify signature and expiry, and make sure token is in the refresh store
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    except ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Refresh token expired")
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid refresh token")
+
+    if payload.get("type") != "refresh":
+        raise HTTPException(status_code=401, detail="Invalid token type")
+
+    if token not in REFRESH_TOKENS:
+        # token was not issued by this server or was revoked
+        raise HTTPException(status_code=401, detail="Refresh token revoked or unknown")
+
+    return int(payload["sub"])
