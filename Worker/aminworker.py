@@ -7,7 +7,7 @@ channel = connection.channel()
 
 def callback(ch, method, properties, body):
     filepath=body.decode()
-    vm_controller.runvm_analysis(filepath)
+    vm_controller.run_vm_analysis(filepath)
 
 channel.basic_consume(queue='vm_tasks', on_message_callback=callback, auto_ack=True)
 channel.start_consuming()
