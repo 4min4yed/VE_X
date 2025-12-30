@@ -118,6 +118,7 @@ async def get_user_files(user=Depends(get_current_user)):
         cursor.close()
         conn.close()
         
+        
         return {
             "success": True,
             "files": files
