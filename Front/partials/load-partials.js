@@ -91,17 +91,28 @@
   }
 
   function setActiveNav() {
+    // Get current page filename
     const path = location.pathname.split('/').pop().toLowerCase();
-    const links = document.querySelectorAll('#site-header nav a');
-    links.forEach(a => {
-      const href = (a.getAttribute('href') || '').split('/').pop().toLowerCase();
-      a.classList.remove('active');
-      if (!href) return;
-      // treat Index.html and index.html and empty path as home
-      if ((href === 'index.html' && (path === '' || path === 'index.html' || path === 'Index.html')) || href === path) {
-        a.classList.add('active');
-      }
+    const navLinks = {
+      'index.html': document.getElementById('nav-home'),
+      'analyze.html': document.getElementById('nav-analyze'),
+      'dashboard.html': document.getElementById('nav-dashboard'),
+      'history.html': document.getElementById('nav-history'),
+      'contact.html': document.getElementById('nav-contact')
+    };
+    
+    // Treat Index.html the same as index.html for matching
+    const currentPage = (path === 'index.html' || path === '' || path === 'Index.html') ? 'index.html' : path;
+    
+    // Remove active from all
+    Object.values(navLinks).forEach(link => {
+      if (link) link.classList.remove('active');
     });
+    
+    // Add active to current page
+    if (navLinks[currentPage]) {
+      navLinks[currentPage].classList.add('active');
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
