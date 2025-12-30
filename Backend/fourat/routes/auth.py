@@ -111,25 +111,15 @@ def refresh(request: RefreshRequest):
     return {"success": True, "access_token": new_access, "refresh_token": new_refresh}
 
 @router.post("/logout")
-def logout(request: RefreshRequest, user=Depends(get_current_user)):
+def logout(request: RefreshRequest):
     """
-    Logout: revoke the provided refresh token for the currently authenticated user.
-    For stronger logout semantics you can revoke all tokens for the user.
+    Logout by refresh token only: verify and revoke the provided refresh token.
+    This allows clients to logout even when their access token has expired.
     """
-    # Verify ownership of refresh token before revoking to avoid revoking others' tokens
-    try:
-        token_owner_id = verify_refresh_token(request.refresh_token)
-    except HTTPException:
-        # If token invalid/expired, still allow logout of session (no-op)
-        token_owner_id = None
-
-    if token_owner_id and token_owner_id != int(user["id"]):
-        raise HTTPException(status_code=403, detail="Refresh token does not belong to the authenticated user")
+    # Verify refresh token and get owner (will raise HTTPException on invalid/expired)
+    user_id = verify_refresh_token(request.refresh_token)
 
     # Revoke the specific refresh token
     revoke_refresh_token(request.refresh_token)
-
-    # Optional: revoke all refresh tokens for the user
-    # revoke_all_refresh_tokens_for_user(int(user["id"]))
 
     return {"success": True, "message": "Logged out successfully"}

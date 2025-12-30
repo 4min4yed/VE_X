@@ -6,12 +6,15 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from jose.exceptions import ExpiredSignatureError
 from core.config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES, REFRESH_TOKEN_EXPIRE_DAYS
 from typing import Optional
+from datetime import datetime
+from database.fake_db import (
+    store_refresh_token,
+    is_refresh_token_present,
+    revoke_refresh_token_db,
+    revoke_all_refresh_tokens_for_user_db,
+)
 
 security = HTTPBearer()  # class provides HTTP Bearer authentication for FastAPI routes
-
-security = HTTPBearer() #class provides HTTP Bearer authentication for FastAPI routes // 
-#the http bearer scheme is commonly used for transmitting access tokens
-REFRESH_TOKENS=set() # In-memory store for issued refresh tokens    
 
 
 def create_access_token(user_id: int, email: str, username: Optional[str] = None):
@@ -33,19 +36,22 @@ def create_refresh_token(user_id: int):
         "exp": datetime.utcnow() + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
     }
     token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
-    # Add token to refresh-token store (in-memory for now)
-    REFRESH_TOKENS.add(token)
+    # Persist token in DB so it survives restarts and can be revoked across instances
+    expires_at = datetime.utcnow() + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
+    try:
+        store_refresh_token(token, user_id, expires_at)
+    except Exception:
+        # best-effort: if DB write fails, token may not be revocable
+        pass
     return token
 
 def revoke_refresh_token(token: str):
     """Revoke a refresh token (remove from refresh store)."""
-    REFRESH_TOKENS.discard(token)
+    revoke_refresh_token_db(token)
 
 def revoke_all_refresh_tokens_for_user(user_id: int):
     """Revoke all refresh tokens for a user (useful for forced logout)."""
-    to_remove = {t for t in REFRESH_TOKENS if _token_belongs_to_user(t, user_id)}
-    for t in to_remove:
-        REFRESH_TOKENS.discard(t)
+    revoke_all_refresh_tokens_for_user_db(user_id)
 
 def _token_belongs_to_user(token: str, user_id: int) -> bool:
     try:
@@ -86,9 +92,8 @@ def verify_refresh_token(token: str):
 
     if payload.get("type") != "refresh":
         raise HTTPException(status_code=401, detail="Invalid token type")
-
-    if token not in REFRESH_TOKENS:
-        # token was not issued by this server or was revoked
+    # Check presence in DB and expiration (DB check compares expires_at > NOW())
+    if not is_refresh_token_present(token):
         raise HTTPException(status_code=401, detail="Refresh token revoked or unknown")
 
     return int(payload["sub"])
