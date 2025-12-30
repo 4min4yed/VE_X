@@ -37,7 +37,8 @@ def get_current_user(
         payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM])
         return {
             "id": payload["sub"],
-            "email": payload["email"]
+            "email": payload["email"],
+            "username": payload.get("username")
         }
     except ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
