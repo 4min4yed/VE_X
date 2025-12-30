@@ -67,6 +67,7 @@ def create_user(username: str, email: str, password_hash: str) -> Optional[int]:
         print(f"Error creating user: {e}")
         return None
 
+
 def user_exists(email: str) -> bool:
     """Check if user exists by email"""
     return get_user_by_email(email) is not None
