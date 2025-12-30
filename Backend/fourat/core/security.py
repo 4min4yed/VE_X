@@ -8,7 +8,7 @@ from core.config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES, REFR
 
 security = HTTPBearer() #class provides HTTP Bearer authentication for FastAPI routes // 
 #the http bearer scheme is commonly used for transmitting access tokens
-
+REFRESH_TOKENS=set() # In-memory store for issued refresh tokens    
 def create_access_token(user_id: int, email: str):
     payload = {
         "sub": str(user_id),
