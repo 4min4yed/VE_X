@@ -12,10 +12,7 @@ security = HTTPBearer()  # class provides HTTP Bearer authentication for FastAPI
 security = HTTPBearer() #class provides HTTP Bearer authentication for FastAPI routes // 
 #the http bearer scheme is commonly used for transmitting access tokens
 REFRESH_TOKENS=set() # In-memory store for issued refresh tokens    
-def create_access_token(user_id: int, email: str):
-# Note: For production you should persist refresh tokens in a DB table (store hashed tokens).
-# This in-memory set is only acceptable for development / demo.
-REFRESH_TOKENS = set()
+
 
 def create_access_token(user_id: int, email: str, username: Optional[str] = None):
     payload = {
