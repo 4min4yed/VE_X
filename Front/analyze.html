@@ -55,7 +55,7 @@
     formData.append('file', file);
     
     try {
-        const response = await fetch('http://localhost:8081/api/analyze', {
+        const response = await fetch('http://localhost:6560/api/analyze', {
             method: 'POST',
             body: formData
         });
@@ -64,6 +64,8 @@
             console.log('Analysis result:', result);
             document.getElementById('file-id').textContent = result.id;
             document.getElementById('file-hash').textContent = result.hash;
+            document.getElementById('response').textContent = result.status;
+
 
         } else {
             console.error('Upload failed:', response.statusText);
@@ -78,6 +80,8 @@
         <div>
   <p>File ID: <span id="file-id"></span></p>
   <p>File Hash: <span id="file-hash"></span></p>
+  <p><span id="response"></span></p>
+
 </div>
 
         
