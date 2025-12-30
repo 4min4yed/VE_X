@@ -5,7 +5,9 @@ from typing import Optional, Dict
 
 # Database connection configuration
 DB_CONFIG = {
-    "host": os.getenv("DB_HOST", "db"),
+    # Default to localhost for host-based development. When running in Docker
+    # Compose use environment DB_HOST=db so services can resolve by name.
+    "host": os.getenv("DB_HOST", "localhost"),
     "user": os.getenv("DB_USER", "vexuser"),
     "password": os.getenv("DB_PASS", "vexpass"),
     "database": os.getenv("DB_NAME", "vex"),
