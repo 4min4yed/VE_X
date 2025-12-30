@@ -30,3 +30,12 @@ CREATE TABLE IF NOT EXISTS analyses (
     analyzed_at TIMESTAMP NULL,
     FOREIGN KEY (file_id) REFERENCES files(id) ON DELETE CASCADE
 );
+
+-- Refresh tokens table: stores issued refresh tokens so they can be revoked
+CREATE TABLE IF NOT EXISTS refresh_tokens (
+    token VARCHAR(512) PRIMARY KEY,
+    user_id INT NOT NULL,
+    expires_at DATETIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

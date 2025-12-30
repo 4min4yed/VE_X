@@ -121,6 +121,34 @@ nav .active {
     background: #1e90ff;
     color: white;
     box-shadow: 0 0 12px #1e90ff;
+
+#auth-area {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav-user {
+    color: #c7c7c7;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.btn-logout {
+    padding: 8px 20px;
+    border: 1px solid #1e90ff;
+    border-radius: 8px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-logout:hover {
+    background: #1e90ff;
+    box-shadow: 0 0 12px #1e90ff;
+}
 }
 
 

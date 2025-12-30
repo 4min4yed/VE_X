@@ -12,9 +12,12 @@
     // Backend expects JSON: { "refresh_token": "<token>" }
     // If you switch to HttpOnly cookies for refresh tokens, send no body and the server will read the cookie.
     try {
+      const access = localStorage.getItem("vex_access_token");
+      const headers = { "Content-Type": "application/json" };
+      if (access) headers["Authorization"] = "Bearer " + access;
       const res = await fetch(`${API_BASE}/api/logout`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({ refresh_token: refreshToken }),
       });
       // It's fine if logout returns non-200 (treat as best-effort)
