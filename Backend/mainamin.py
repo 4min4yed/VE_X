@@ -66,3 +66,6 @@ async def upload(file: UploadFile):
         return {"status": "Task queued","id": file_id, "hash": digest}
     except Exception as e:
         return {"status": str(e),"id":"" , "hash": ""}
+    
+
+  

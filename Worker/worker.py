@@ -1,10 +1,10 @@
 import json
 import pika
-from .faroukconfig import RABBITMQ_HOST, QUEUE_NAME
-from .faroukvm_controller import run_vm_analysis
+from .config import RABBITMQ_HOST, QUEUE_NAME
+from .vm_controller import run_vm_analysis
 
 def on_message(channel, method, properties, body):
-    print("📩 Job received")
+    print("Job received")
 
     payload = json.loads(body.decode())
     job_id = payload["job_id"]
@@ -13,9 +13,9 @@ def on_message(channel, method, properties, body):
     try:
         run_vm_analysis(job_id, file_path)
         channel.basic_ack(delivery_tag=method.delivery_tag)
-        print("✅ Job completed")
+        print("Job completed")
     except Exception as e:
-        print("❌ Error:", e)
+        print("Error:", e)
         channel.basic_ack(delivery_tag=method.delivery_tag)
 
 def main():
@@ -32,7 +32,7 @@ def main():
         on_message_callback=on_message
     )
 
-    print("🚀 Worker started, waiting for jobs...")
+    print("Worker started, waiting for jobs...")
     channel.start_consuming()
 
 if __name__ == "__main__":
