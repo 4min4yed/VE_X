@@ -5,6 +5,7 @@ import uuid
 from fastapi.middleware.cors import CORSMiddleware
 import pika
 import json
+
 #start it with: uvicorn  mainamin:app --reload --host 0.0.0.0 --port 6560
 app = FastAPI()
 
