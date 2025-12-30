@@ -15,6 +15,8 @@ DB_CONFIG = {
     "database": os.getenv("DB_NAME", "vex"),
 }
 
+
+
 def get_db():
     """Get a MySQL database connection"""
     try:
