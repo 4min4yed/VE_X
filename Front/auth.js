@@ -91,7 +91,7 @@ async function logout() {
     if (refreshToken) {
       await fetch(`${API_BASE}/api/logout`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...getAuthHeader() },
         body: JSON.stringify({ refresh_token: refreshToken })
       });
     }
@@ -102,6 +102,9 @@ async function logout() {
     window.location.href = "login.html";
   }
 }
+
+// expose logout globally so header can call it
+window.logout = logout;
 
 /* Attach to forms if present on the page */
 document.addEventListener("DOMContentLoaded", () => {
